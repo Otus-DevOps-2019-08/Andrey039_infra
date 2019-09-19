@@ -27,4 +27,5 @@ Host someinternalhost
 
 
 bastion_IP = 35.210.137.137 
+
 someinternalhost_IP = 10.132.0.3
