@@ -19,3 +19,11 @@ Host someinternalhost
 ``` alias someinternalhost='ssh -i ~/.ssh/appuser -A appuser@10.132.0.3  -o "proxycommand ssh -W %h:%p appuser@35.210.137.137"'```  (Внимание на кавычки)
 
 С использованием ~/.ssh/config для запуска одной командой ``` someinternalhost ``` создать алиас ``` alias someinternalhost='ssh  someinternalhost' ```
+
+
+Использовалась статья https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/
+
+### OpenVPN (Pritunl)  в GCP
+
+bastion_IP = 35.210.137.137 
+someinternalhost_IP = 10.132.0.3
