@@ -26,6 +26,7 @@ Host someinternalhost
 ### OpenVPN (Pritunl)  в GCP
 
 
+
 ``` 
 bastion_IP = 35.210.137.137
 
