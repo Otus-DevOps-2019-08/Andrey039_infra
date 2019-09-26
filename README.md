@@ -1,34 +1,43 @@
+## Деплой тестового приложения
 
-### Самостоятельное задание + дополнительное задание
+### Создание инстанса GCP  через gcloud shell
 
-#### Подключение при помощи команды ssh someinternalhost
-Создаем файл (если его нет) ~/.ssh/config
 ```
-Host someinternalhost
-     HostName 10.132.0.3 #10.132.0.3 IP изолированной ВМ
-     User appuser 
-     Port 22
-     IdentityFile ~/.ssh/appuser
-     ProxyCommand ssh appuser@35.210.137.137 -W %h:%p  #35.210.137.137 IP bastionhost
+gcloud compute instances create reddit-app\
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --restart-on-failure\
+  --metadata startup-script-url=https://gist.githubusercontent.com/Andrey039/ca9ce56544e8fe3a43d632b7806ad0bb/raw/98c69b58e45ad62bc0056ac3ba3e5ceb478b2f0e/startupscript.sh
 ```
-В результате появляется возможность подключится к someinternalhost командой ``` ssh someinternalhost ```
+Где ``` --metadata startup-script-url ``` запуск startup-script c gist.
 
-#### Для подключения в одну команду someinternalhost
+### Открытие порта в GCP через консоль
 
-Для ленивых подойдет aliase (без использования ~/.ssh/config)
+```
+  gcloud compute --project=infra-253413 firewall-rules create puma \
+  --direction=INGRESS \
+  --priority=1000 \
+  --network=default \
+  --action=ALLOW \
+  --rules=tcp:9292 \
+  --source-ranges=0.0.0.0/0 \
+  --target-tags=puma-server
+```
 
-``` alias someinternalhost='ssh -i ~/.ssh/appuser -A appuser@10.132.0.3  -o "proxycommand ssh -W %h:%p appuser@35.210.137.137"'```  (Внимание на кавычки)
+```
+testapp_IP = 34.77.229.218
+testapp_port = 9292
 
-С использованием ~/.ssh/config для запуска одной командой ``` someinternalhost ``` создать алиас ``` alias someinternalhost='ssh  someinternalhost' ```
+```
+### Самостоятельная работа
+
+Написан простейший bash скрипт для провиженинга  ```  startupscript.sh  ``` при создании инстанса.
 
 
-Использовалась статья https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/
-
-### OpenVPN (Pritunl)  в GCP
-
-
-``` 
-bastion_IP = 35.210.137.137
+Скрипт с защитой от повтроного выполнения при рестарте инстанса.
 
 someinternalhost_IP = 10.132.0.3
-```
+
