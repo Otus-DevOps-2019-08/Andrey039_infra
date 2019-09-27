@@ -4,12 +4,13 @@
             "type": "googlecompute",
             "project_id": "{{ user `project_id` }}",
             "image_name": "{{user `image_family`}}-{{timestamp}}",
-            "image_family": "{{user `image_family`}}",
+            "image_family": "reddit-full",
             "source_image_family": "{{user `source_image_family`}}",
-            "zone": "{{ user `zone` }}",
+            "zone": "{{user `zone`}}",
             "ssh_username": "appuser",
-            "machine_type": "{{ disk_size` }}",
-            "tags": "{{ user `tags` }}",
+            "machine_type": "{{user `machine_type`}}",
+            "disk_size": "{{ user `disk_size` }}",
+            "tags": ["{{ user `tags` }}"],
             "network": "default"
         }
     ],
@@ -22,6 +23,11 @@
 	{
             "type": "shell",
             "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/deploy.sh",
             "execute_command": "sudo {{.Path}}"
         }
     ]
