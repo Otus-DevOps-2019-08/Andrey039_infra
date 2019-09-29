@@ -8,7 +8,8 @@
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "{{ user `zone` }}",
             "ssh_username": "appuser",
-            "machine_type": "{{ disk_size` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "machine_type": "{{ user `machine_type` }}",
             "tags": "{{ user `tags` }}",
             "network": "default"
         }
