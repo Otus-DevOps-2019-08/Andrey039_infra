@@ -1,0 +1,50 @@
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{ user `project_id` }}",
+            "image_name": "{{user `image_family`}}-{{timestamp}}",
+            "image_family": "reddit-full",
+            "source_image_family": "{{user `source_image_family`}}",
+            "zone": "{{user `zone`}}",
+            "ssh_username": "appuser",
+            "machine_type": "{{user `machine_type`}}",
+            "disk_size": "{{ user `disk_size` }}",
+            "tags": ["{{ user `tags` }}"],
+            "network": "default"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+	{
+            "type": "shell",
+            "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/deploy.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+
+        {
+            "type": "file",
+            "source": "files/reddit.service",
+            "destination": "/tmp/reddit.service"
+        },
+
+        {
+            "type": "shell",
+            "inline": [
+                "sudo mv /tmp/reddit.service /etc/systemd/system/",
+                "sudo systemctl daemon-reload",
+		        "sudo systemctl start reddit.service",
+		        "sudo systemctl enable reddit.service"
+            ]
+        }
+    ]
+}
