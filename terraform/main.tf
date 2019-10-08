@@ -8,9 +8,8 @@ provider "google" {
   version = "2.15"
 
   # ID проекта
-  project = "infra-253413"
-
-  region = "europe-west-1"
+  project = var.project
+  region = "europe-west3"
 }
 resource "google_compute_firewall" "firewall_puma" {
   name = "allow-puma-default"
@@ -29,12 +28,12 @@ resource "google_compute_firewall" "firewall_puma" {
 resource "google_compute_instance" "app" {
   name = "reddit-app"
   machine_type = "g1-small"
-  zone = "europe-west1-b"
+  zone = "europe-west3-c"
   tags = ["reddit-app"]
   # определениезагрузочногодиска
   boot_disk {
     initialize_params {
-      image = "reddit-full"
+      image = var.disk_image
     }
   }
   
