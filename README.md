@@ -1,7 +1,4 @@
-## Сборка образов VM при помощи Paker
+## Практика IaC сиспользованием Terraformиспользованием Terr
 
-- Создан файл ubuntu16.json с описанием базового образа reddit-base с использованием пользовательстких переменных м файле variables.json
-
-- создан шаблон immutable.json (reddit-full)  с запуском puma как сервис systemd
-
-- написан скрипт packer/config-scripts/create-reddit-vm.sh для запуска ВМ с gcloud console (reddit-full)
+- написан main.tf, определены перенменные в variables.tf, заданы переменные в *.tfvars
+ 
