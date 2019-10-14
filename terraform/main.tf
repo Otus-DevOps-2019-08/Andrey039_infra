@@ -75,5 +75,5 @@ resource "google_compute_instance" "app" {
 #    appuser2:${file(var.public_key_path)}
 #    appuser3:${file(var.public_key_path)}
 #EOF
-#  }
+ }
 }
