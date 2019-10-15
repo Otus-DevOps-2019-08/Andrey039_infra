@@ -1,5 +1,5 @@
 {
-    "project_id": "infra-xxxxx",
+    "project_id": "infra-253413",
     "source_image_family": "ubuntu-1604-lts",
     "image_family": "reddit-base",
     "zone": "europe-west1-b",
@@ -7,3 +7,4 @@
     "disk_size": "10",
     "tags": "puma-server"
   }
+  
