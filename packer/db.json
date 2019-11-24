@@ -3,7 +3,7 @@
         {
             "type": "googlecompute",
             "project_id": "{{ user `project_id` }}",
-            "image_name": "{{user `image_family_db`}}-{{timestamp}}",
+            "image_name": "{{user `image_family`}}-{{timestamp}}",
             "image_family": "{{user `image_family_db`}}",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "{{ user `zone` }}",
