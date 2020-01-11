@@ -8,10 +8,10 @@ provider "google" {
 }
 module "storage-bucket" {
   source  = "SweetOps/storage-bucket/google"
-  version = "0.3.0"
+  version = "0.1.1"
 
   # Имя поменяйте на другое
-  name = "storage-bucket-Andrey039"
+  name = ["storage-bucket-Andrey039-test", "storage-bucket-Andrey039-test2"]
 }
 
 output storage-bucket_url {

@@ -2,7 +2,7 @@ variable project {
   # Описание переменной
   description = "Project ID"
   # Значение по умолчанию
-  default = "infra-253413"
+  default = "infra-263207"
 }
 variable region {
   description = "Region"
@@ -24,7 +24,7 @@ variable privat_key_path {
 
 variable zone {
   description = "Zone"
-  default     = "europe-west1-b"
+  default     = "europe-west1-d"
 }
 
 variable app_disk_image {
