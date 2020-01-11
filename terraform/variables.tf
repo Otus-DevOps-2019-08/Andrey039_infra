@@ -1,28 +1,32 @@
 variable project {
-  # Описание переменной
   description = "Project ID"
-  # Значение по умолчанию
-  default = "infra-253413"
 }
+
 variable region {
   description = "Region"
   default     = "europe-west1"
 }
+
+variable location {
+  description = "location"
+  default     = "europe-west2-1"
+}
+
 variable public_key_path {
-  description = "Путь до публичного ключа"
+  description = "public_key_path"
   default     = "~/.ssh/appuser.pub"
 }
+
+variable private_key_path {
+  description = "private_key_path"
+  default     = "~/private_key_path"
+}
 variable disk_image {
-  description = "Disk image"
+  description = "disk_image"
   default     = "reddit-base"
 }
 
-variable privat_key_path {
-  description = "Путь до приватного ключа"
-  default     = "~/.ssh/appuser"
-}
-
-variable zone {
-  description = "Zone"
-  default     = "europe-west1-b"
+variable inst_count {
+  description = "inst_count"
+  default     = 1
 }

@@ -6,4 +6,3 @@ sudo apt update
 sudo apt -y install mongodb-org
 sudo systemctl enable mongod.service
 sudo systemctl start mongod.service
-
